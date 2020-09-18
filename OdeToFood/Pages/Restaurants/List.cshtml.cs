@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using OdeToFood.Core;
 using OdeToFood.Data;
@@ -14,6 +15,11 @@ namespace OdeToFood
         public string Message { get; set; }
         public IEnumerable<Restaurant>  Restaurants { get; set; }
 
+        // Tells framework to get information from the request
+        // By default, only binds during post.  Need to use the SupportsGet flag to bind during get
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
+
 
         public ListModel(IConfiguration config, IRestaurantData restaurantData)
         {
@@ -21,11 +27,11 @@ namespace OdeToFood
             this.restaurantData = restaurantData;
         }
 
-        public void OnGet()
+        public void OnGet(string searchTerm)
         {
-            //Message = "Hello, World!";
+            
             Message = config["Message"];
-            Restaurants = restaurantData.GetAll();
+            Restaurants = restaurantData.GetRestaurantsByName(SearchTerm);
         }
     }
 }
