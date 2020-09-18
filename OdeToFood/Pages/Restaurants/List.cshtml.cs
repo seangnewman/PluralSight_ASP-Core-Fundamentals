@@ -16,7 +16,7 @@ namespace OdeToFood
         public IEnumerable<Restaurant>  Restaurants { get; set; }
 
         // Tells framework to get information from the request
-        // By default, only binds during post.  Need to use the SupportsGet flag to bind during get
+        // By default, only binds during post.  Need to use the SupportsGet flag to bind during get.  The flag default is false
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
 

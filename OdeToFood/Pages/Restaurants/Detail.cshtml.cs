@@ -9,6 +9,10 @@ namespace OdeToFood
     {
 
         private readonly IRestaurantData restaurantData;
+
+        //stored only for temporary
+        [TempData]
+        public string Message { get; set; }
         public Restaurant Restaurant { get; set; }
 
         public DetailModel(IRestaurantData restaurantData)
