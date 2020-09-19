@@ -1,11 +1,12 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - OdeToFood</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -39,6 +40,8 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
+            <vc:restaurant-count></vc:restaurant-count>
+            @RenderSection("footer", required:false)
             &copy; 2020 - OdeToFood - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
