@@ -1,0 +1,46 @@
+﻿@page
+@model OdeToFood.ClientRestaurantsModel
+@{
+    ViewData["Title"] = "ClientRestaurants";
+}
+
+<h1>ClientRestaurants</h1>
+
+<table class="table" id="restaurants">
+
+</table>
+
+@section Scripts{
+    <script src="~/datatables/js/dataTables.bootstrap4.js"></script>
+    <script src="~/datatables/js/jquery.dataTables.js"></script>
+    <link href="~/datatables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+    <script>
+        $(function () {
+
+            // Please do not do this,  just to get the example to work. 
+            var cuisines = [
+                 "None", 
+                "Mexican",
+                "Italian",
+                "Indian",
+                 "Asian",
+                 "BBQ"
+            ];
+
+            $.ajax("/api/restaurants/", { method: "get" })
+                .then(function (response) {
+
+                    $("#restaurants").dataTable({
+                        data: response,
+                        columns: [{ "data": "name" },
+                                             { "data": "location" },
+                                              { "data": "cuisine", "render": function (data) { return cuisines[data]; } }
+                                           ]
+                    });
+                     
+                });
+        });
+    </script>
+
+}
+

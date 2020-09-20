@@ -12,7 +12,7 @@ namespace OdeToFood.Data
             restaurants = new List<Restaurant>()
             {
                 new Restaurant{Id= 1, Name ="Oregano's", Location = "Goodyear", Cuisine = CuisineType.Italian },
-                new Restaurant{Id= 2, Name ="Pei Wi", Location = "Avondale", Cuisine = CuisineType.Chinese },
+                new Restaurant{Id= 2, Name ="Pei Wi", Location = "Avondale", Cuisine = CuisineType.Asian },
                 new Restaurant{Id= 3, Name ="Honey Bear's", Location = "Phoenix", Cuisine = CuisineType.BBQ }
 
             };

@@ -5,7 +5,7 @@
         Mexican,
         Italian,
         Indian,
-        Chinese,
+        Asian,
         BBQ
     }
 }

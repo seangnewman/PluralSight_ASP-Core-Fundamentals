@@ -22,13 +22,13 @@
     </div>
 </form>
 
-@foreach(var restaurant in Model.Restaurants)
+@foreach (var restaurant in Model.Restaurants)
 {
-    <partial name="_Summary" model="restaurant"/>
+    <partial name="_Summary" model="restaurant" />
 }
-
 <a asp-page=".\Edit" class="btn btn-primary">Add Restaurant</a>
-
+<br/>
 @section footer{
-    <div>@Model.Message</div>
+
+    <!-- <div>@Model.Message</div> -->
 }
