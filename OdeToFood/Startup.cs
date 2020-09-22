@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -41,7 +42,7 @@ namespace OdeToFood
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();  //Installs developer exception middleware, displays page to help developer identify the exception
             }
             else
             {
@@ -50,13 +51,12 @@ namespace OdeToFood
                 app.UseHsts();
             }
 
+            app.Use(SayHelloMiddleware);
+
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
+            app.UseStaticFiles();  // serve static files located in the wwwroot directory
             app.UseRouting();
-
-            app.UseAuthorization();
-
+            app.UseAuthorization();   // user authentication
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
@@ -64,8 +64,26 @@ namespace OdeToFood
                 endpoints.MapControllers();
             });
 
+           
             
              
+        }
+
+        private RequestDelegate SayHelloMiddleware(RequestDelegate next)
+        {
+            return async ctx =>
+            {
+                if (ctx.Request.Path.StartsWithSegments("/hello"))
+                {
+                    await ctx.Response.WriteAsync("Hello World!");
+                }
+                else
+                {
+                    await next(ctx);
+                     
+                }
+               
+            };
         }
     }
 }
